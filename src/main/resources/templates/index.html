@@ -1,10 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Users</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
 </head>
 <body>
-$END$
+<div th:switch="${users}">
+    <h2 th:case="null">No users yet!</h2>
+    <div th:case="*">
+        <!--        <div align="center">-->
+        <h2>User list</h2>
+        <table border="1"> <!--align="center"-->
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="user : ${users}">
+                <td th:text="${user.getName()}"></td>
+                <td th:text="${user.getEmail()}"></td>
+                <td><a th:href="@{/edit/{id}(id=${user.getId()})}">Edit</a></td>
+                <td><a th:href="@{/delete/{id}(id=${user.getId()})}">Delete</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <p><a href="/addUser">Add user</a></p>
+</div>
 </body>
 </html>

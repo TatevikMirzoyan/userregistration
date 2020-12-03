@@ -1,5 +1,13 @@
-package com.registration.userregistration.repository;/**
- * @author Tatevik Mirzoyan 
+package com.registration.userregistration.repository;
+
+import com.registration.userregistration.model.User;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+/**
+ * @author Tatevik Mirzoyan
  * Created on 03-Dec-20
-*/public interface UserRepository {
+ */
+@Repository
+public interface UserRepository extends JpaRepository<User, Long> {
 }
